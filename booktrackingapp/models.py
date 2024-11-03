@@ -32,12 +32,21 @@ class BookStatues(models.Model):
     COMPLETED = 2
     DID_NOT_FINISH = 3
 
+class BookRating(models.Model):
+    ZERO = 0
+    ONE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+
 class UserBook(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book= models.ForeignKey(Book, on_delete=models.CASCADE)
-    statues = models.IntegerField(default=BookStatues.TO_READ)
+    status = models.IntegerField(default=BookStatues.TO_READ)
+    rating = models.IntegerField(default=BookRating.ZERO)
     def __str__(self):
-        return f"{self.user} - {self.book} - ({self.get_status_display()})"
+        return f"{self.user} - {self.book} - ({self.get_status_display()}) - ({self.get_rating_display()})"
 
     def get_status_display(self):
         status_mapping = {
@@ -46,7 +55,21 @@ class UserBook(models.Model):
             BookStatues.COMPLETED: "Completed",
             BookStatues.DID_NOT_FINISH: "Did Not Finish",
         }
-        return status_mapping[self.statues]
+
+        return status_mapping[self.status]
+
+    def get_rating_display(self):
+        rating_mapping = {
+            BookRating.ZERO: "0",
+            BookRating.ONE: "1",
+            BookRating.TWO: "2",
+            BookRating.THREE: "3",
+            BookRating.FOUR: "4",
+            BookRating.FIVE: "5",
+        }
+        return rating_mapping[self.rating]
+
+
 
 class JournalEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
