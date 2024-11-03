@@ -9,7 +9,6 @@ class User(models.Model):
     def __str__(self):
         return f"{self.name} - {self.email}"
 
-
 #model containing all authors present in the books database,  currently not in
 #use but could be incorporated in future to allow user to search by author
 class Author(models.Model):
@@ -27,12 +26,27 @@ class Book(models.Model):
     def __str__(self):
         return f"Book: '{self.name}' - '{self.author}' - '{self.description}' - {self.pages}"
 
+class BookStatues(models.Model):
+    TO_READ = 0
+    IN_PROGRESS = 1
+    COMPLETED = 2
+    DID_NOT_FINISH = 3
+
 class UserBook(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     book= models.ForeignKey(Book, on_delete=models.CASCADE)
-    statues = models.IntegerField() #e.g 1 'to read', 2 'in progress', 3 'did not finish', 4 'completed'
+    statues = models.IntegerField(default=BookStatues.TO_READ)
     def __str__(self):
-        return f"{self.user} - {self.book}"
+        return f"{self.user} - {self.book} - ({self.get_status_display()})"
+
+    def get_status_display(self):
+        status_mapping = {
+            BookStatues.TO_READ: "To Read",
+            BookStatues.IN_PROGRESS: "In Progress",
+            BookStatues.COMPLETED: "Completed",
+            BookStatues.DID_NOT_FINISH: "Did Not Finish",
+        }
+        return status_mapping[self.statues]
 
 class JournalEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
