@@ -7,16 +7,25 @@
 <body>
 <h1>Book Tracking App</h1>
 <!--{{ books }}-->
+
+<h2>List Of Books</h2>
+
 <ul>
     {% for book in books %}
         <li>
-            <p>Book: {{ book.name }}</p>
+            <p>Book: {{ book.name }}, Author: {{ book.author }}, Page-count: {{ book.pages }}</p>
             <p>Description: {{ book.description }}</p>
-            <p>Author: {{ book.author }}</p>
-            <p>Page-count: {{ book.pages }}</p>
+            <p>&nbsp;</p>
         </li>
     {% endfor %}
 </ul>
+
+<h2>Personal Stats</h2>
+<p>Books Read: </p>
+<p>Pages Read: </p>
+<p>Average Rating: </p>
+
+<h2>Personal Library</h2>
 
 </body>
 </html>
