@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Completed</title>
+</head>
+<body>
+
+<h3>Completed</h3>
+
+
+{% for user_book in completed_books %}
+    <li>
+        Book Title: {{ user_book.book.name }}
+        Author: {{ user_book.book.author }}
+        Rating: {{ user_books.rating }}
+    </li>
+{% endfor %}
+
+</body>
+</html>

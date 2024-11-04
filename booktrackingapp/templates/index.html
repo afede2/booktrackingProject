@@ -46,26 +46,6 @@
 
 <h2>Personal Library</h2>
 
-<h3>In-Progress</h3>
-{% for user_book in user_books %}
-        <li>
-            {{ user_book.book }}, {{ user_book.status }} {{ user_book.rating }}
-        </li>
-    {% endfor %}
-
-{% for user_book in in_progress_books %}
-    <li>
-        Book Title: {{ user_book.book.name }}
-        Author: {{ user_book.book.author }}
-        Rating: {{ user_books.rating }}
-    </li>
-{% endfor %}
-
-<h3>To Read</h3>
-
-<h3>Completed</h3>
-
-
 {{ user_books }}
 
 </body>
