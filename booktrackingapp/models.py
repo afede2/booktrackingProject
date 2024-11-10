@@ -23,8 +23,11 @@ class Book(models.Model):
     description = models.TextField()
     pages = models.IntegerField()
 
+    status = models.IntegerField(choices=[(0, 'To Read'), (1, 'In Progress'), (2, 'Completed'), (3, 'Did Not Finish')], default=0)
+    rating = models.FloatField(choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3'), (4, '4'), (5, '5')], default=0)
+
     def __str__(self):
-        return f"Book: '{self.name}' - '{self.author}' - '{self.description}' - {self.pages}"
+        return f"Book: '{self.name}' - '{self.author}' - '{self.description}' - {self.pages} - {self.status} - {self.rating}"
 
 class BookStatues(models.Model):
     TO_READ = 0
@@ -40,34 +43,34 @@ class BookRating(models.Model):
     FOUR = 4
     FIVE = 5
 
-class UserBook(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    book= models.ForeignKey(Book, on_delete=models.CASCADE)
-    status = models.IntegerField(default=BookStatues.TO_READ)
-    rating = models.IntegerField(default=BookRating.ZERO)
-    def __str__(self):
-        return f"{self.user} - {self.book} - ({self.get_status_display()}) - ({self.get_rating_display()})"
-
-    def get_status_display(self):
-        status_mapping = {
-            BookStatues.TO_READ: "To Read",
-            BookStatues.IN_PROGRESS: "In Progress",
-            BookStatues.COMPLETED: "Completed",
-            BookStatues.DID_NOT_FINISH: "Did Not Finish",
-        }
-
-        return status_mapping[self.status]
-
-    def get_rating_display(self):
-        rating_mapping = {
-            BookRating.ZERO: "0",
-            BookRating.ONE: "1",
-            BookRating.TWO: "2",
-            BookRating.THREE: "3",
-            BookRating.FOUR: "4",
-            BookRating.FIVE: "5",
-        }
-        return rating_mapping[self.rating]
+#class UserBook(models.Model):
+#    user = models.ForeignKey(User, on_delete=models.CASCADE)
+#    book= models.ForeignKey(Book, on_delete=models.CASCADE)
+#    status = models.IntegerField(default=BookStatues.TO_READ)
+#    rating = models.IntegerField(default=BookRating.ZERO)
+#    def __str__(self):
+#        return f"{self.user} - {self.book} - ({self.get_status_display()}) - ({self.get_rating_display()})"
+#
+#    def get_status_display(self):
+#        status_mapping = {
+#            BookStatues.TO_READ: "To Read",
+#            BookStatues.IN_PROGRESS: "In Progress",
+#            BookStatues.COMPLETED: "Completed",
+#            BookStatues.DID_NOT_FINISH: "Did Not Finish",
+#        }
+#
+#        return status_mapping[self.status]
+#
+#    def get_rating_display(self):
+#        rating_mapping = {
+#            BookRating.ZERO: "0",
+#            BookRating.ONE: "1",
+#            BookRating.TWO: "2",
+#            BookRating.THREE: "3",
+#            BookRating.FOUR: "4",
+#            BookRating.FIVE: "5",
+#        }
+#        return rating_mapping[self.rating]
 
 
 

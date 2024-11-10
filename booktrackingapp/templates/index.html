@@ -14,11 +14,16 @@
 <ul>
     {% for book in books %}
         <li>
-            <form action="/" method="post">
+            <form action="{% url'index' %}" method="post">
+                {% csrf_token %}
                 <p>Book: {{ book.name }}, Author: {{ book.author }}, Page-count: {{ book.pages }}</p>
                 <p>Description: {{ book.description }}</p>
-                <label for="rating">☆ Your Rating:</label> <!--add rating to tabel-->
-                <select class="rating_select">
+
+                <input type="hidden" name="book_id" value="{{ book.id }}">
+
+              <label for="rating">Rating:</label>
+                <select name="rating" id="rating">
+                    <option value="1">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -26,12 +31,13 @@
                     <option value="5">5</option>
                 </select>
                 <label for="status">Statues:</label>
-                <select class="status_select">
-                    <option value="none">To Read</option>
-                    <option value="ascending">In Progress</option>
-                    <option value="descending">Completed</option>
-                    <option value="descending">Did not finish</option>
+                <select name="status" id="status">
+                    <option value="0">To Read</option>
+                    <option value="1">In Progress</option>
+                    <option value="2">Completed</option>
+                    <option value="3">Did not finish</option>
                 </select>
+
                 <input type="submit" value="Enter">
                 <p>&nbsp;</p>
             </form>

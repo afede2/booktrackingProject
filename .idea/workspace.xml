@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8554a762-c447-489d-befa-001dd19fa57f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booktrackingapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/booktrackingapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/booktrackingapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/booktrackingapp/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/booktrackingapp/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/booktrackingapp/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/booktrackingapp/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/booktrackingapp/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/booktrackingapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/booktrackingapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,9 +27,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2oJdpFkasYb1yTgzGeBU9HYUidL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -42,7 +43,7 @@
     "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/anafe/OneDrive/Desktop/Uni classes/Year Five/Web Applications Frameworks/assignment-1-afede2",
+    "last_opened_file_path": "C:/Users/anafe/Documents/booktrackingProject-master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,6 +103,8 @@
       <option name="presentableId" value="Default" />
       <updated>1730591793486</updated>
       <workItem from="1730591801699" duration="35739000" />
+      <workItem from="1730683900121" duration="107000" />
+      <workItem from="1731126758105" duration="21306000" />
     </task>
     <servers />
   </component>
