@@ -6,15 +6,20 @@
 </head>
 <body>
 
-<h3>In-Progress</h3>
-
-
+<h1>In-Progress</h1>
 {% for user_book in in_progress_books %}
-    <li>
-        Book Title: {{ user_book.book.name }}
-        Author: {{ user_book.book.author }}
-        Rating: {{ user_books.rating }}
-    </li>
+    <form action="/journal_entry" method="POST">
+        {% csrf_token %}
+        <label for="book_chosen_{{ book.id }}"></label>
+        <li>
+            Book Title: {{ user_book.book.name }}
+            Author: {{ user_book.book.author }}
+            Rating: {{ user_book.rating}}
+        </li>
+        <input type="hidden" name="book_chosen_{{ user_book.book.id }}" value="{{ user_book.book.id }}">
+        <input type="submit" value="Go to Entries">
+        <p>&nbsp;</p>
+    </form>
 {% endfor %}
 
 </body>

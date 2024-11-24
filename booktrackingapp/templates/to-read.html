@@ -8,12 +8,12 @@
 
 <h3>To Read</h3>
 
-
+{% csrf_token %}
 {% for user_book in to_read_books %}
     <li>
         Book Title: {{ user_book.book.name }}
         Author: {{ user_book.book.author }}
-        Rating: {{ user_books.rating }}
+        Rating: {{ user_book.rating  }}
     </li>
 {% endfor %}
 

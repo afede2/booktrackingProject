@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Journal Entry</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+<h1>Journal Entry</h1>
+
+<h2>Selected Book</h2>
+{% for requirement in selected_book %}
+    <p1>Book Name: </p1>
+    {{ requirement.book.name }}
+{% endfor %}
+
+<h3>Existing Journal Entries</h3>
+<ul id="entryList">
+    {% for entry in journal_entries %}
+        <li>
+            {{ entry.journal_entry }}
+            {{ entry.entry_date }}
+        </li>
+    {% endfor %}
+</ul>
+
+<form method="POST" id=entryForm action="/create_entry">
+    {% csrf_token %}
+    {{ newEntry.as_p }}
+    {% for requirement in selected_book %}
+        <input type="hidden" name="chosen_book_id" value="{{ requirement.book.id }}">
+    {% endfor %}
+    <input type="submit" value="Create Entry">
+</form>
+<script>
+    $(document).ready(function(){
+        console.log ("Website has loaded")
+        $("#entryForm").submit(function(e){
+            e.preventDefault();
+            console.log("Entry submitted");
+            $.ajax({
+                type: 'POST',
+                url: '{% url 'create_entry' %}',
+                data: $(this).serialize(),
+                success: function (response){
+                    $('#entryList').append('<li>'+ response.entry_description +'</li>')
+                    console.log("Success, entry created")
+
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

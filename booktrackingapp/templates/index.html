@@ -7,30 +7,32 @@
 </head>
 <body>
 <h1>Book Tracking App</h1>
-<!--{{ books }}-->
 
 <h2>List Of Books</h2>
 
 <ul>
     {% for book in books %}
         <li>
-            <form action="/" method="post">
+            <form action="/add-to-list" method="POST">
+                {% csrf_token %}
                 <p>Book: {{ book.name }}, Author: {{ book.author }}, Page-count: {{ book.pages }}</p>
                 <p>Description: {{ book.description }}</p>
-                <label for="rating">☆ Your Rating:</label> <!--add rating to tabel-->
-                <select class="rating_select">
+
+                <label for="rating_{{ book.id }}">☆ Your Rating:</label> <!--add rating to tabel-->
+                <select class="rating_select" name="rating_{{ book.id }}">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <label for="status">Statues:</label>
-                <select class="status_select">
-                    <option value="none">To Read</option>
-                    <option value="ascending">In Progress</option>
-                    <option value="descending">Completed</option>
-                    <option value="descending">Did not finish</option>
+
+                <label for="status_{{ book.id }}">Statues:</label>
+                <select class="status_select" name="status_{{ book.id }}">
+                    <option value="0">To Read</option>
+                    <option value="1">In Progress</option>
+                    <option value="2">Completed</option>
+                    <option value="3">Did not finish</option>
                 </select>
                 <input type="submit" value="Enter">
                 <p>&nbsp;</p>
@@ -39,14 +41,6 @@
     {% endfor %}
 </ul>
 
-<h2>Personal Stats</h2>
-<p>Books Read: </p>
-<p>Pages Read: </p>
-<p>Average Rating: </p>
-
-<h2>Personal Library</h2>
-
-{{ user_books }}
 
 </body>
 </html>

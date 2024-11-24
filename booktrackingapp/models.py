@@ -1,13 +1,17 @@
+from django.conf.global_settings import AUTH_USER_MODEL
 from django.db import models
+from django.utils import timezone
+from django.conf import settings
+
 
 #
-class User(models.Model):
-    name = models.CharField(max_length=50)
-    email = models.EmailField()
-    password = models.CharField(max_length=50)
+#class User(models.Model):
+#    name = models.CharField(max_length=50)
+#    email = models.EmailField()
+#    password = models.CharField(max_length=50)
 
-    def __str__(self):
-        return f"{self.name} - {self.email}"
+#    def __str__(self):
+#        return f"{self.name} - {self.email}"
 
 #model containing all authors present in the books database,  currently not in
 #use but could be incorporated in future to allow user to search by author
@@ -41,10 +45,11 @@ class BookRating(models.Model):
     FIVE = 5
 
 class UserBook(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     book= models.ForeignKey(Book, on_delete=models.CASCADE)
     status = models.IntegerField(default=BookStatues.TO_READ)
     rating = models.IntegerField(default=BookRating.ZERO)
+
     def __str__(self):
         return f"{self.user} - {self.book} - ({self.get_status_display()}) - ({self.get_rating_display()})"
 
@@ -69,13 +74,12 @@ class UserBook(models.Model):
         }
         return rating_mapping[self.rating]
 
-
-
 class JournalEntry(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(AUTH_USER_MODEL, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    journal_entry = models.TextField()
-    entry_date = models.DateField()
+    journal_entry = models.CharField(max_length=200)
+    entry_date = models.DateField(default=timezone.now)
+
     def __str__(self):
         return f"{self.user} - {self.book} - '{self.journal_entry}' - {self.entry_date}"
 
